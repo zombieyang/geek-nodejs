@@ -14,6 +14,9 @@ const app = new koa();
 
 app.use(
     mount('/favicon.ico', function (ctx) {
+        // koa比express做了更极致的response处理函数
+        // 因为koa使用异步函数作为中间件的实现方式
+        // 所以koa可以在等待所有中间件执行完毕之后再统一处理返回值，因此可以用赋值运算符
         ctx.status = 200;
     })
 )
@@ -30,8 +33,10 @@ gameKoa.use(
             return;
         }
 
+        // 使用await 关键字等待后续中间件执行完成
         await next();
 
+        // 就能获得一个准确的洋葱模型效果
         if (ctx.playerWon) {
             playerWinCount++;
         }
@@ -72,6 +77,8 @@ gameKoa.use(
         const playerAction = ctx.playerAction;
         const result = game(playerAction);
 
+        // 对于一定需要在请求主流程里完成的操作，一定要使用await进行等待
+        // 否则koa就会在当前事件循环就把http response返回出去了
         await new Promise(resolve => {
             setTimeout(() => {
                 ctx.status = 200;

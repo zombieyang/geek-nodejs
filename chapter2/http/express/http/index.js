@@ -72,8 +72,8 @@ app.get('/game',
         const playerAction = response.playerAction;
         const result = game(playerAction);
         
-        // 如果这里把setTimeout放出来，会导致前面的洋葱模型失效
-        // 因为playerWon不是在中间件执行流程的事件循环里赋值的
+        // 如果这里执行setTimeout，会导致前面的洋葱模型失效
+        // 因为playerWon不是在中间件执行流程所属的那个事件循环里赋值的
         // setTimeout(()=> {
             response.status(200);
             if (result == 0) {
