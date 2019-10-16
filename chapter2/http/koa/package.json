@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
     "koa": "^2.10.0",
     "koa-mount": "^4.0.0"
   },

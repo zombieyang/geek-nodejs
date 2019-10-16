@@ -1,6 +1,5 @@
 const fs = require('fs');
 const game = require('./game')
-const express = require('express');
 const koa = require('koa');
 const mount = require('koa-mount')
 
@@ -25,7 +24,6 @@ app.use(
 )
 gameKoa.use(
     async function (ctx, next) {
-        console.log(11);
         if (playerWinCount >= 3) {
             ctx.status = 500;
             ctx.body = '我不会再玩了！'
@@ -41,7 +39,6 @@ gameKoa.use(
 )
 gameKoa.use(
     async function (ctx, next) {
-        console.log(22);
         const query = ctx.query;
         const playerAction = query.action;
         if (!playerAction) {

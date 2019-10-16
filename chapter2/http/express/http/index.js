@@ -11,11 +11,15 @@ var sameCount = 0;
 
 const app = express();
 
+// 通过app.get设定 /favicon.ico 路径的路由
+// .get 代表请求 method 是 get，所以这里可以用 post、delete 等。这个能力很适合用于创建 rest 服务
 app.get('/favicon.ico', function (request, response) {
+    // 一句 status(200) 代替 writeHead(200); end();
     response.status(200)
     return;
 })
 
+// 设定 /game 路径的路由
 app.get('/game',
 
     function (request, response, next) {
@@ -24,17 +28,21 @@ app.get('/game',
             response.send('我不会再玩了！');
             return;
         }
-
+        
+        // 通过next执行后续中间件
         next();
 
+        // 当后续中间件执行完之后，会执行到这个位置
         if (response.playerWon) {
             playerWinCount++;
         }
     },
 
     function (request, response, next) {
+        // express自动帮我们把query处理好挂在request上
         const query = request.query;
         const playerAction = query.action;
+
         if (!playerAction) {
             response.status(400);
             response.send();
@@ -54,6 +62,8 @@ app.get('/game',
             sameCount = 0;
         }
         lastPlayerAction = playerAction;
+
+        // 把用户操作挂在response上传递给下一个中间件
         response.playerAction = playerAction
         next();
     },
@@ -62,7 +72,9 @@ app.get('/game',
         const playerAction = response.playerAction;
         const result = game(playerAction);
         
-        setTimeout(()=> {
+        // 如果这里把setTimeout放出来，会导致前面的洋葱模型失效
+        // 因为playerWon不是在中间件执行流程的事件循环里赋值的
+        // setTimeout(()=> {
             response.status(200);
             if (result == 0) {
                 response.send('平局')
@@ -75,7 +87,7 @@ app.get('/game',
                 response.playerWon = true;
     
             }
-        }, 500)
+        // }, 500)
     }
 )
 
