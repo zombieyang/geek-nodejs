@@ -32,29 +32,19 @@ const lessonids = [
 
 let id = Math.floor(Math.random() * lessonids.length);
 
+socket.write(encode(id));
+
 socket.on('data', (buffer) => {
-    const seqBuffer = buffer.slice(0, 2);
-    const titleBuffer = buffer.slice(2);
-
-    console.log(seqBuffer.readInt16BE(), titleBuffer.toString())
+    console.log(buffer.toString())
     
-
-})
-
-
-let seq = 0;
-function encode(index) {
-    buffer = Buffer.alloc(6);
-    buffer.writeInt16BE(seq)
-    buffer.writeInt32BE(
-        lessonids[index], 2
-    );
-    console.log(seq, lessonids[index]);
-    seq++;
-    return buffer;
-}
-
-for (let k = 0; k < 100; k++) {
     id = Math.floor(Math.random() * lessonids.length);
     socket.write(encode(id));
+})
+
+function encode(index) {
+    buffer = Buffer.alloc(4);
+    buffer.writeInt32BE(
+        lessonids[index]
+    );
+    return buffer;
 }
