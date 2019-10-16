@@ -57,30 +57,34 @@ app.get('/game',
         response.playerAction = playerAction
         next();
     },
-    
+
     function (req, response) {
         const playerAction = response.playerAction;
         const result = game(playerAction);
-        
-        setTimeout(()=> {
+
+        setTimeout(() => {
             response.status(200);
             if (result == 0) {
                 response.send('平局')
-    
+
             } else if (result == -1) {
                 response.send('你输了')
-    
+
             } else {
                 response.send('你赢了')
                 response.playerWon = true;
-    
+
             }
         }, 500)
     }
 )
 
 app.get('/', function (request, response) {
-    response.send(fs.readFileSync(__dirname + '/index.html', 'utf-8'))
+    // send接口会判断你传入的值的类型，文本的话则会处理为text/html
+    // Buffer的话则会处理为下载
+    response.send(
+        fs.readFileSync(__dirname + '/index.html', 'utf-8')
+    )
 })
 
 app.listen(3000);
