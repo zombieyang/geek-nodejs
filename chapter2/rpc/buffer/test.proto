@@ -1,0 +1,10 @@
+message Course {
+    required float id = 1;
+    required string name = 2;
+    repeated Lesson lesson = 3;
+}
+
+message Lesson {
+    required float id = 1;
+    required string title = 2;
+}
