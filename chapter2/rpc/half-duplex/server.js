@@ -1,26 +1,23 @@
 const net = require('net');
 
+// 创建tcp服务器
 const server = net.createServer((socket) => {
 
     socket.on('data', function(buffer) {
-        console.log(buffer);
-        const seqBuffer = buffer.slice(0, 2);
-        const lessonid = buffer.readInt32BE(2);
+        // 从传来的buffer里读出一个int32
+        const lessonid = buffer.readInt32BE();
 
+        // 50毫秒后回写数据
         setTimeout(()=> {
-            // console.log(data[lessonid])
-            const buffer = Buffer.concat([
-                seqBuffer,
-                Buffer.from(data[lessonid])
-            ])
             socket.write(
-                buffer
+                Buffer.from(data[lessonid])
             );
-        }, 10 + Math.random() * 1000)
+        }, 50)
     })
 
 });
 
+// 监听端口启动服务
 server.listen(4000);
 
 const data = {

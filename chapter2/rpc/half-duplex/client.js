@@ -1,7 +1,9 @@
 const net = require('net');
 
+// 创建socket
 const socket = new net.Socket({});
 
+// 连接服务器
 socket.connect({
     host: '127.0.0.1',
     port: 4000
@@ -32,29 +34,22 @@ const lessonids = [
 
 let id = Math.floor(Math.random() * lessonids.length);
 
+// 往服务器传数据
+socket.write(encode(id));
+
 socket.on('data', (buffer) => {
-    const seqBuffer = buffer.slice(0, 2);
-    const titleBuffer = buffer.slice(2);
+    console.log(buffer.toString())
 
-    console.log(seqBuffer.readInt16BE(), titleBuffer.toString())
-    
-
-})
-
-
-let seq = 0;
-function encode(index) {
-    buffer = Buffer.alloc(6);
-    buffer.writeInt16BE(seq)
-    buffer.writeInt32BE(
-        lessonids[index], 2
-    );
-    console.log(seq, lessonids[index]);
-    seq++;
-    return buffer;
-}
-
-for (let k = 0; k < 100; k++) {
+    // 接收到数据之后，按照半双工通信的逻辑，马上开始下一次请求
     id = Math.floor(Math.random() * lessonids.length);
     socket.write(encode(id));
+})
+
+// 把编码请求包的逻辑封装为一个函数
+function encode(index) {
+    buffer = Buffer.alloc(4);
+    buffer.writeInt32BE(
+        lessonids[index]
+    );
+    return buffer;
 }
