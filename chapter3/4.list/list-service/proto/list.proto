@@ -1,0 +1,36 @@
+message Course {
+    required int32 id = 1;
+    required string introURL = 2;
+    required string pic = 3;
+    required string topic = 4;
+    required string author = 5;
+    required string title = 6;
+    required uint32 lessonNum = 7;
+    required uint32 subscriberNum = 8;
+    required float price = 9;
+    optional float discount = 10;
+    repeated Lesson lessons = 11;
+}
+message Lesson {
+    required uint32 id = 1;
+    required uint32 index = 2;
+    required bool isFree = 3;
+    required string title = 4;
+    required string playURL = 5;
+}
+
+message PackageHead {
+    required fixed32 seq = 1;
+    required fixed32 bodyLength = 2;
+}
+message CourseListResponse {
+    required uint32 sortType = 1;
+    required uint32 filterType = 2;
+    required uint32 page = 3;
+    repeated Course courses = 4;
+}
+message CourseListRequest {
+    optional uint32 sortType = 1;
+    optional uint32 filterType = 2;
+    optional uint32 page = 3;
+}
