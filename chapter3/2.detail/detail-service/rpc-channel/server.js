@@ -1,5 +1,5 @@
 // 'use strict';
-// const debug = require("debug")('easysock-server');
+// 把rpc通信服务端程序封装成像http模块一样的形式
 const net = require("net");
 
 module.exports = class RPC {
@@ -55,77 +55,3 @@ module.exports = class RPC {
         }
     }
 }
-
-// /**
-//  * @param config
-//  *  encode
-//  *  decode
-//  *  check
-//  * @param handleResponse:async fn
-//  *
-//  *
-//  * @returns {bindsocket(socket)}
-//  */
-// let exportee = module.exports = function (config, handleResponse) {
-// 	let {encode, decode, check} = config;
-// 	if (!check && config.isReceiveComplete) check = config.isReceiveComplete;
-
-// 	// 缓冲区
-// 	let handleData = async function (buffer) {
-// 		let param = null;
-// 		let result = null;
-
-// 		try {
-// 			param = decode(buffer);
-// 			result = await handleResponse(param.error, param.result);
-// 			return encode(result, param.seq);
-// 		} catch (e) {
-// 			return debug(e);
-// 		}
-// 	};
-
-// 	return function bindsocket(socket) {
-// 		debug('socket connected', socket.connection);
-
-// 		socket.on('data', data=> {
-// 			debug('socket ondata');
-
-// 			debug('remain', buffer && buffer.length)
-// 		});
-
-// 		socket.on('end', e=> {
-// 			debug('socket end');
-// 		});
-
-// 		return socket;
-// 	};
-// };
-
-// const net = require("net");
-// /**
-//  * 直接创建一个server
-//  * @param config 包含encode、decode、check
-//  * @param handlerResponse 一个async function，参数为收到的请求结构体，返回是回包的结构体
-//  */
-// exportee.server = function (config, handlerResponse) {
-// 	let handleSocket = exportee(config, handlerResponse);
-// 	let socketList = [];
-
-// 	return Object.assign(
-// 		net.createServer(function (socket) {
-// 			handleSocket(socket);
-// 			socketList.push(socket);
-// 		}),
-
-// 		{
-// 			closeAllSocket: function () {
-// 				socketList.forEach(socket=> {
-// 					if (!socket.destroyed) {
-// 						socket.destroy();
-
-// 					}
-// 				})
-// 			}
-// 		}
-// 	)
-// };

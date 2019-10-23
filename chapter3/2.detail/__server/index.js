@@ -1,9 +1,12 @@
+// 以下是服务端代码（指的是比Node.js更后端的，提供数据服务的服务端）
+
+
 const fs = require('fs')
 const protobuf = require('protocol-buffers');
 const schemas = protobuf(fs.readFileSync(`${__dirname}/../detail-service/proto/detail.proto`));
 const RPC = require('../detail-service/rpc-channel/server')
 
-
+// 假数据
 const listData = {
     column: {
         id: 232,
