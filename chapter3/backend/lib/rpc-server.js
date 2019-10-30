@@ -33,11 +33,11 @@ module.exports = class RPC {
 
                     const request = this.decodeRequest(requestBuffer);
                     callback(
-                        {
+                        { // request
                             body: request.result,
                             socket
                         },
-                        {
+                        { // response
                             end: (data) => {
                                 const buffer = this.encodeResponse(data, request.seq)
                                 socket.write(buffer);

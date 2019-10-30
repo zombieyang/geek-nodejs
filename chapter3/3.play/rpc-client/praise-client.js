@@ -2,17 +2,17 @@ const EasySock = require('easy_sock');
 
 const protobuf = require('protocol-buffers')
 const fs = require('fs');
-const schemas = protobuf(fs.readFileSync(`${__dirname}/detail.proto`));
+const schemas = protobuf(fs.readFileSync(`${__dirname}/../schema/comment.proto`));
 
 const easySock = new EasySock({ 
     ip: '127.0.0.1',
-    port: 4000,
+    port: 4002,
     timeout: 500,
     keepAlive: true
 })
 
 easySock.encode = function(data, seq) {
-    const body = schemas.ColumnRequest.encode(data);
+    const body = schemas.PraiseRequest.encode(data);
 
     const head = Buffer.alloc(8);
     head.writeInt32BE(seq);
@@ -22,7 +22,7 @@ easySock.encode = function(data, seq) {
 }
 easySock.decode = function(buffer) {
     const seq = buffer.readInt32BE();
-    const body = schemas.ColumnResponse.decode(buffer.slice(8));
+    const body = schemas.PraiseResponse.decode(buffer.slice(8));
     
     return {
         result: body,

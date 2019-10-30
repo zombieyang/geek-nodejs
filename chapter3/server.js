@@ -1,1 +1,4 @@
-require('./2.detail/__server')
+require('./backend/comment-list')
+require('./backend/comment-praise')
+require('./backend/detail')
+require('./backend/list')

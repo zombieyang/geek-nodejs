@@ -1,0 +1,25 @@
+message Comment {
+    required int32 id = 1;
+    required string avatar = 2;
+    required string name = 3;
+    required bool isTop = 4;
+    required string content = 5;
+    required string publishDate = 6;
+    required int32 commentNum = 7;
+    required int32 praiseNum = 8;
+}
+
+message CommentListResponse {
+    repeated Comment comments = 1;
+}
+message CommentListRequest {
+    repeated int32 columnid = 1;
+}
+
+message PraiseRequest {
+    required int32 commentid = 1;
+}
+message PraiseResponse {
+    required int32 commentid = 1;
+    required int32 praiseNum = 2;
+}

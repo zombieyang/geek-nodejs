@@ -6,6 +6,7 @@ const graphqlHTTP = require('koa-graphql');
 
 
 app.use(
+    // 给koa-graphql传一个graphql的协议文件，就会自动帮你生成graphql-api
     mount('/api', graphqlHTTP({
         schema: require('./schema')
     }))
@@ -23,7 +24,5 @@ app.use(
         ctx.body = fs.readFileSync(`${__dirname}/source/index.htm`, 'utf-8')
     })
 )
-
-// app.listen(3000);
 
 module.exports = app;
