@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bff": "node entry.js",
+    "microservice": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "easy_sock": "^0.3.8",

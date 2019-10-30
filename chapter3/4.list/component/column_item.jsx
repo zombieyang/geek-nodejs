@@ -21,12 +21,12 @@ module.exports = class ColumnItem extends React.Component {
                     <div className="_14n6BJoa_0">
                         <ul>
                             {
-                                column.articles.map(article => {
+                                column.articles.map((article, index) => {
                                     return (
                                         <li key={article.id}>
-                                            <a href="" className="_10vvBdC9_0">
+                                            <a href="" className={article.is_video_preview ? "_10vvBdC9_0" : ''}>
                                                 {article.is_video_preview ? <span className="_ffA7FdL_0">免费</span> : ''}
-                                                {article.article_title}
+                                                {'0' + index + ' | ' + article.article_title}
                                             </a>
                                         </li>
                                     )

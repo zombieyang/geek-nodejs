@@ -13,7 +13,7 @@ app.use(
     mount('/play', require('./3.play/index'))
 )
 app.use(
-    mount('/list', require('./4.list/page/index'))
+    mount('/list', require('./4.list/node/index'))
 )
 
 app.listen(3000, ()=> {
