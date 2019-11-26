@@ -2612,6 +2612,12 @@
   </div>
   </div><span id="_calculateTextWidth"
     style="visibility: hidden; font-size: 16px; display: inline-block; position: absolute; left: -100%; top: -100%;">我们在线，来聊聊吧</span>
+  <script>
+    var path = location.href.split('?')[0]
+    if (path[path.length - 1] != '/') {
+      location.href = path + '/' + (location.href.split('?')[1] ? '?' + location.href.split('?')[1] : '')
+    }
+  </script>
 </body>
 
 </html>
