@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./workspace/src/page.data.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/page.data.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./workspace/src/page.data.js":
-/*!************************************!*\
-  !*** ./workspace/src/page.data.js ***!
-  \************************************/
+/***/ "./src/page.data.js":
+/*!**************************!*\
+  !*** ./src/page.data.js ***!
+  \**************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -101,7 +101,7 @@ module.exports = {
 
         port: 4000,
 
-        protobufFile: __webpack_require__(/*! ./workspace/src/proto/detail.proto */ "./workspace/src/proto/detail.proto"),
+        protobufFile: __webpack_require__(/*! ./src/proto/detail.proto */ "./src/proto/detail.proto"),
 
         requestStruct: 'ColumnRequest',
         responseStruct: 'ColumnResponse',
@@ -120,7 +120,7 @@ module.exports = {
         },
 
         then: function (res) {
-            return JSON.parse(res).data//.list;
+            return JSON.parse(res).data.list;
         },
 
         catch: function () {
@@ -131,10 +131,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./workspace/src/proto/detail.proto":
-/*!******************************************!*\
-  !*** ./workspace/src/proto/detail.proto ***!
-  \******************************************/
+/***/ "./src/proto/detail.proto":
+/*!********************************!*\
+  !*** ./src/proto/detail.proto ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
