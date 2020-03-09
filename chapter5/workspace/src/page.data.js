@@ -25,7 +25,7 @@ module.exports = {
         },
 
         then: function (res) {
-            return JSON.parse(res).data//.list;
+            return JSON.parse(res).data.list;
         },
 
         catch: function () {
