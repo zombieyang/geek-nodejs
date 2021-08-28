@@ -1,0 +1,22 @@
+{
+  "name": "refactor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "easy_sock": "^0.3.8",
+    "koa": "^2.11.0",
+    "koa-mount": "^4.0.0",
+    "memory-fs": "^0.5.0",
+    "mkdirp": "^0.5.1",
+    "protocol-buffers": "^4.1.0",
+    "request": "^2.88.0",
+    "text-loader": "0.0.1",
+    "webpack": "^4.41.2"
+  }
+}

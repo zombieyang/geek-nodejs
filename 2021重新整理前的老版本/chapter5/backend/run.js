@@ -1,0 +1,5 @@
+// require('./backend/comment-list')
+// require('./backend/comment-praise')
+// require('./backend/article')
+require('./detail')
+require('./article')
