@@ -7,7 +7,7 @@ const templateContext = vm.createContext({});
 
 function createTemplate(templatePath) {
     return vm.runInContext(
-        `(function render(template) {
+        `(function render() {
             return function (data) {
                 with (data) {
                     return \`${fs.readFileSync(templatePath, 'utf-8')}\`
@@ -16,7 +16,7 @@ function createTemplate(templatePath) {
         })`,
         templateContext
     )(function (relativePath, data) {
-        return createTemplate(path.dirname(templatePath) + '/' + relativePath)(data);
+        return createTemplate()(data);
     });
 }
 
