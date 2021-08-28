@@ -1,0 +1,12 @@
+*.a
+*.so
+*.o
+*.exe
+a.out
+tmp
+log
+*.log
+build
+node_modules
+bower_components
+.deps

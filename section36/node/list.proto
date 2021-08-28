@@ -1,0 +1,29 @@
+message Column {
+    required int32 id = 1;
+    required string column_cover = 2;
+    required string column_title = 3;
+    required string column_subtitle = 4;
+    required string author_name = 5;
+    required string author_intro = 6;
+    required string column_intro = 7;
+    required string column_unit = 8;
+    required uint32 sub_count = 9;
+    required string update_frequency = 10;
+    required uint32 column_price = 11;
+    required uint32 type = 12;
+    optional uint32 column_price_market = 13;
+    repeated Article articles = 14;
+}
+message Article {
+    required uint32 id = 1;
+    required bool is_video_preview = 2;
+    required string article_title = 3;
+}
+
+message ListResponse {
+    repeated Column columns = 1;
+}
+message ListRequest {
+    required int32 sortType = 1;
+    required int32 filtType = 2;
+}
