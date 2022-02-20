@@ -65,7 +65,7 @@ if (cluster.isMaster) {
         }
     });
 
-    // 内存使用过多，自杀
+    // 内存使用过多，自己退出进程
     if (process.memoryUsage().rss > 734003200) {
         process.exit(1);
     }
